@@ -13,11 +13,15 @@ export default gql`
     updatedAt: String!
   }
 
-  type Query {
-    getUser(username: String!): User
+  type UserOutput {
+    ok: Boolean!
+    user: User
+    error: String
   }
 
-  type Mutation {
-    createUser(username: String!, email: String!, password: String!): CommonOutput
+  type TokenOutput {
+    ok: Boolean!
+    token: String
+    error: String
   }
 `;

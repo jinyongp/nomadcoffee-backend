@@ -15,9 +15,13 @@
     "@graphql-tools/schema": "^8.3.1",
     "@prisma/client": "3.8.1",
     "apollo-server": "^3.6.2",
+    "apollo-server-express": "^3.6.2",
     "bcrypt": "^5.0.1",
     "dotenv": "^14.3.0",
-    "graphql": "^16.2.0"
+    "express": "^4.17.2",
+    "graphql": "^16.2.0",
+    "graphql-upload": "^13.0.0",
+    "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
     "@babel/core": "^7.16.12",
