@@ -1,6 +1,5 @@
-export function protectResolver(resolver, options = { auth: false }) {
+export function handleResolverError(resolver) {
   return async (root, args, context, info) => {
-    if (options.auth && !context.authorizedUser) return { ok: false, error: 'No User Authorized' };
     try {
       return await resolver(root, args, context, info);
     } catch ({ code, message, meta }) {

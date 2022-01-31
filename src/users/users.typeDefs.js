@@ -9,6 +9,10 @@ export default gql`
     location: String
     avatarURL: String
     githubUsername: String
+    followers(items: Int!, lastId: Int): [User]!
+    following(items: Int!, lastId: Int): [User]!
+    totalFollowers: Int!
+    totalFollowing: Int!
     createdAt: String!
     updatedAt: String!
   }
@@ -16,12 +20,6 @@ export default gql`
   type UserOutput {
     ok: Boolean!
     user: User
-    error: String
-  }
-
-  type TokenOutput {
-    ok: Boolean!
-    token: String
     error: String
   }
 `;

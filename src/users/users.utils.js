@@ -13,3 +13,10 @@ export async function getUser(token) {
     return null;
   }
 }
+
+export function authorized(resolver) {
+  return (root, args, context, info) => {
+    if (!context.authorizedUser) return { ok: false, error: 'No User Authorized' };
+    return resolver(root, args, context, info);
+  };
+}

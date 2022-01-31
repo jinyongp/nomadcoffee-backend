@@ -1,9 +1,10 @@
 import bcrypt from 'bcrypt';
 import { createWriteStream } from 'fs';
+import { authorized } from '../users.utils';
 
 export default {
   Mutation: {
-    async editProfile(_, data, { client, authorizedUser }) {
+    editProfile: authorized(async (_, data, { client, authorizedUser }) => {
       if (data.password) data.password = await bcrypt.hash(data.password, 10);
       if (data.avatarURL) {
         const { filename, createReadStream } = await data.avatarURL;
@@ -17,6 +18,6 @@ export default {
       }
       await client.user.update({ where: { id: authorizedUser.id }, data });
       return { ok: true };
-    },
+    }),
   },
 };
