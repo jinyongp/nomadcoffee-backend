@@ -1,11 +1,10 @@
 import bcrypt from 'bcrypt';
 import 'dotenv/config';
 import jwt from 'jsonwebtoken';
-import { protectResolver } from '../users.utils';
 
 export default {
   Mutation: {
-    login: protectResolver(async (_, { username, password }, { client }) => {
+    async login(_, { username, password }, { client }) {
       const user = await client.user.findFirst({ where: { username } });
       if (!user) return { ok: false, error: 'User Not Found' };
 
@@ -14,6 +13,6 @@ export default {
 
       const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET_KEY);
       return { ok: true, token };
-    }),
+    },
   },
 };
