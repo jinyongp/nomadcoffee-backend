@@ -24,6 +24,6 @@ const port = process.env.PORT || 4000;
   app.use('/static', express.static('uploads'));
   server.applyMiddleware({ app });
 
-  await new Promise((resolve) => app.listen({ port }, resolve));
+  await new Promise<void>((resolve) => app.listen({ port }, resolve));
   console.log(`Server is running on http://localhost:${port}${server.graphqlPath}`);
 })();

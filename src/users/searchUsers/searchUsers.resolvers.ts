@@ -1,6 +1,10 @@
+import { CursorArgs, Resolvers } from '../../types';
+
+type SearchUsersArgs = CursorArgs & { keyword: string };
+
 export default {
   Query: {
-    async searchUsers(_, { keyword, items, lastId }, { client }) {
+    searchUsers: async (_, { keyword, items, lastId }: SearchUsersArgs, { client }) => {
       const users = await client.user.findMany({
         where: { username: { startsWith: keyword, mode: 'insensitive' } },
         take: items,
@@ -9,4 +13,4 @@ export default {
       return { ok: true, users };
     },
   },
-};
+} as Resolvers;
