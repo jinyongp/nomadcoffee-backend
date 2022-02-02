@@ -1,7 +1,7 @@
+import client from '@client';
+import { AuthorizedResolver, CommonOutput } from '@types';
 import 'dotenv/config';
 import jwt from 'jsonwebtoken';
-import client from '../client';
-import { AuthorizedResolver, CommonOutput } from '../types';
 
 export async function getUser(token: string | undefined) {
   if (!token) return null;

@@ -1,10 +1,10 @@
+import client from '@client';
+import { getUser } from '@schema/user/users.utils';
 import { ApolloServer } from 'apollo-server-express';
 import 'dotenv/config';
 import express from 'express';
 import { graphqlUploadExpress } from 'graphql-upload';
-import client from './client';
 import schema from './schema';
-import { getUser } from './users/users.utils';
 
 const server = new ApolloServer({
   schema,

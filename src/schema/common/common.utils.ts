@@ -1,5 +1,5 @@
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
-import { Resolver } from '../types';
+import { Resolver } from '@types';
 
 export function handleResolverError(resolver: Resolver): Resolver {
   return async (root, args, context, info) => {

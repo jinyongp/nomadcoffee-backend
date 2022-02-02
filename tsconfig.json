@@ -4,6 +4,12 @@
     "target": "es2020",
     "allowJs": true,
     "moduleResolution": "Node",
+    "baseUrl": "src",
+    "paths": {
+      "@types": ["types"],
+      "@client": ["client"],
+      "@schema/*": ["schema/*"]
+    },
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,

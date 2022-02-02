@@ -1,6 +1,6 @@
 import { User } from '@prisma/client';
+import { Resolvers } from '@types';
 import bcrypt from 'bcrypt';
-import { Resolvers } from '../../types';
 
 type CreateAccountArgs = Pick<User, 'username' | 'email' | 'password'>;
 

@@ -1,5 +1,5 @@
 import { User } from '@prisma/client';
-import { ComputedFields, CursorArgs } from '../types';
+import { ComputedFields, CursorArgs } from '@types';
 
 export default {
   User: {

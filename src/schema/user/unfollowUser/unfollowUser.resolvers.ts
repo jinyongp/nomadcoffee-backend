@@ -1,5 +1,5 @@
 import { User } from '@prisma/client';
-import { Resolvers } from '../../types';
+import { Resolvers } from '@types';
 import { authorized } from '../users.utils';
 
 type UnfollowUserArgs = Pick<User, 'username'>;

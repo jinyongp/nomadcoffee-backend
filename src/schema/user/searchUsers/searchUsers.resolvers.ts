@@ -1,4 +1,4 @@
-import { CursorArgs, Resolvers } from '../../types';
+import { CursorArgs, Resolvers } from '@types';
 
 type SearchUsersArgs = CursorArgs & { keyword: string };
 

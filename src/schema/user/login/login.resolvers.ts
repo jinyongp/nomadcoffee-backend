@@ -1,8 +1,8 @@
 import { User } from '@prisma/client';
+import { Resolvers } from '@types';
 import bcrypt from 'bcrypt';
 import 'dotenv/config';
 import jwt from 'jsonwebtoken';
-import { Resolvers } from '../../types';
 
 type LoginArgs = Pick<User, 'username' | 'password'>;
 
