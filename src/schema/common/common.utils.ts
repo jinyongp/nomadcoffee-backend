@@ -5,8 +5,9 @@ export function handleResolverError(resolver: Resolver): Resolver {
   return async (root, args, context, info) => {
     try {
       return await resolver(root, args, context, info);
-    } catch (error) {
-      // console.error(message, code);
+    } catch (error: any) {
+      // console.error(error.message, error.code);
+      // console.table(error);
       if (error instanceof PrismaClientKnownRequestError) {
         const { code, meta } = error;
         switch (code) {
@@ -24,6 +25,8 @@ export function handleResolverError(resolver: Resolver): Resolver {
           default:
             return { ok: false, error: `Unexpected Server Error${code ? `(Code: ${code})` : ''}` };
         }
+      } else if (error.name === 'NotFoundError') {
+        return { ok: false, error: error.message };
       } else {
         console.error(error);
         return { ok: false, error: `Unexpected Server Error` };

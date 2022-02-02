@@ -30,7 +30,7 @@ type AuthorizedResolver = (
   info: GraphQLResolveInfo,
 ) => Promise<CommonOutput>;
 
-type ComputedResolver<ParentObjectType> = <InputType>(
+type ComputedField<ParentObjectType> = <InputType>(
   parent: ParentObjectType,
   args: InputType,
   context: ContextType,
@@ -46,7 +46,7 @@ type Resolvers = {
 };
 
 type ComputedFields<ParentObjectType> = {
-  [key in string]: {
-    [key: string]: ComputedResolver<ParentObjectType>;
+  [schema: string]: {
+    [field: string]: ComputedField<ParentObjectType>;
   };
 };
