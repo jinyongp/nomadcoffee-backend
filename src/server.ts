@@ -12,6 +12,7 @@ const server = new ApolloServer({
     const authorizedUser = await getUser(req.headers.authorization);
     return { client, authorizedUser };
   },
+  introspection: true,
 });
 
 const port = process.env.PORT || 4000;

@@ -1,7 +1,9 @@
 {
   "exclude": ["node_modules", "**/node_modules/*"],
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "es5",
+    "module": "CommonJS",
+    "lib": ["ESNext"],
     "allowJs": true,
     "moduleResolution": "Node",
     "baseUrl": "src",
@@ -10,6 +12,8 @@
       "@client": ["client"],
       "@schema/*": ["schema/*"]
     },
+    "removeComments": true,
+    "outDir": "dist",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
