@@ -8,8 +8,7 @@ export default {
   Mutation: {
     unfollowUser: authorized(
       async (_, { username }: UnfollowUserArgs, { authorizedUser, client }) => {
-        const user = await client.user.findUnique({ where: { username } });
-        if (!user) throw { code: 'P2025' };
+        await client.user.findUnique({ where: { username } });
         await client.user.update({
           where: { id: authorizedUser.id },
           data: { following: { disconnect: { username } } },

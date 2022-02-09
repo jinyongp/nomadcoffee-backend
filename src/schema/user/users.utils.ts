@@ -15,9 +15,9 @@ export async function getUser(token: string | undefined) {
   }
 }
 
-export function authorized(resolver: AuthorizedResolver): AuthorizedResolver {
+export function authorized<T>(resolver: AuthorizedResolver<T>): AuthorizedResolver<T> {
   return async (parent, args, context, info): Promise<CommonOutput> => {
-    if (!context.authorizedUser) return { ok: false, error: 'No User Authorized' };
+    if (!context.authorizedUser) return { ok: false, error: '인증된 사용자가 없습니다.' };
     return resolver(parent, args, context, info);
   };
 }

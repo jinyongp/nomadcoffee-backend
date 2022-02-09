@@ -1,8 +1,18 @@
 import { PrismaClient, User } from '@prisma/client';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import { GraphQLResolveInfo, GraphQLScalarType } from 'graphql';
 
+type SendError = () => PrismaClientKnownRequestError;
+type PrismaClientOptions = {
+  rejectOnNotFound: {
+    [api in 'findFirst' | 'findUnique']: {
+      [model in 'User' | 'CoffeeShop' | 'CoffeeShopPhoto']: SendError;
+    };
+  };
+};
+
 type ContextType = {
-  readonly client: PrismaClient;
+  readonly client: PrismaClient<PrismaClientOptions>;
   readonly authorizedUser?: User;
 };
 
@@ -16,23 +26,23 @@ type CommonOutput = {
   readonly error?: string;
 };
 
-type Resolver = <InputType>(
+type Resolver = (
   parent: any,
-  args: InputType,
+  args: any,
   context: ContextType,
   info: GraphQLResolveInfo,
-) => Promise<CommonOutput>;
+) => Promise<any>;
 
-type AuthorizedResolver = (
-  parent: any,
+type AuthorizedResolver<ParentObjectType = any> = (
+  parent: ParentObjectType,
   args: any,
   context: Required<ContextType>,
   info: GraphQLResolveInfo,
-) => Promise<CommonOutput>;
+) => Promise<any>;
 
-type ComputedField<ParentObjectType> = <InputType>(
+type ComputedField<ParentObjectType> = (
   parent: ParentObjectType,
-  args: InputType,
+  args: any,
   context: ContextType,
   info: GraphQLResolveInfo,
 ) => Promise<any>;

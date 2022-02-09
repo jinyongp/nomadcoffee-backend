@@ -6,8 +6,7 @@ type SeeUserArgs = Pick<User, 'username'>;
 export default {
   Query: {
     seeUser: async (_, { username }: SeeUserArgs, { client }) => {
-      const user = await client.user.findFirst({ where: { username } });
-      if (!user) return { ok: false, error: 'User Not Found' };
+      const user = await client.user.findUnique({ where: { username } });
       return { ok: true, user };
     },
   },
