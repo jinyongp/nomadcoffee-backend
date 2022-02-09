@@ -1,4 +1,4 @@
-import { CoffeeShop } from '@prisma/client';
+import { Category, CoffeeShop, CoffeeShopPhoto } from '@prisma/client';
 import { authorized } from '@schema/user/users.utils';
 import { Resolvers } from '@types';
 
@@ -12,15 +12,16 @@ export default {
   Mutation: {
     editCoffeeShop: authorized(async (_, args: EditCoffeeShopArgs, { authorizedUser, client }) => {
       const { id, name, latitude, longitude, photos, categories } = args;
-      const coffeeShop: CoffeeShop & { photos?: { id: number }[]; categories?: { id: number }[] } =
-        await client.coffeeShop.findFirst({
-          where: { AND: [{ id }, { userId: authorizedUser.id }] },
-          rejectOnNotFound: true,
-          include: {
-            ...(photos && { photos: { select: { id: true } } }),
-            ...(categories && { categories: { select: { id: true } } }),
-          },
-        });
+      const coffeeShop: CoffeeShop & {
+        photos?: Pick<CoffeeShopPhoto, 'id'>[];
+        categories?: Pick<Category, 'id'>[];
+      } = await client.coffeeShop.findFirst({
+        where: { AND: [{ id }, { userId: authorizedUser.id }] },
+        include: {
+          ...(photos && { photos: { select: { id: true } } }),
+          ...(categories && { categories: { select: { id: true } } }),
+        },
+      });
 
       await client.coffeeShop.update({
         where: { id },
