@@ -13,6 +13,9 @@ export default {
         ...(lastId && { skip: 1, cursor: { id: lastId } }),
       });
     },
+    isMine: async ({ userId }, _, { authorizedUser }) => {
+      return userId === authorizedUser?.id;
+    },
     categories: async ({ id }, { items, lastId }: CursorArgs, { client }) => {
       return client.category.findMany({
         where: { shops: { some: { id } } },
