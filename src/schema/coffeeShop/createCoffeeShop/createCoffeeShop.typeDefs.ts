@@ -8,6 +8,6 @@ export default gql`
       longitude: String!
       photos: [String]
       categories: [String]
-    ): CommonOutput
+    ): CommonOutput!
   }
 `;

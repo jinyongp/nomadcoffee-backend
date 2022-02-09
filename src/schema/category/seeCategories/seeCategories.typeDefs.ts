@@ -8,6 +8,6 @@ export default gql`
   }
 
   type Query {
-    seeCategories(items: Int!, lastId: Int): CategoriesOutput
+    seeCategories(items: Int!, lastId: Int): CategoriesOutput!
   }
 `;

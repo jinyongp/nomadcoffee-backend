@@ -8,6 +8,6 @@ export default gql`
   }
 
   type Query {
-    seeCoffeeShop(id: Int!): CoffeeShopOutput
+    seeCoffeeShop(id: Int!): CoffeeShopOutput!
   }
 `;

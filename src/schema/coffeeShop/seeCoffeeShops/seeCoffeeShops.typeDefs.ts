@@ -8,6 +8,6 @@ export default gql`
   }
 
   type Query {
-    seeCoffeeShops(items: Int!, lastId: Int, userId: Int): CoffeeShopsOutput
+    seeCoffeeShops(items: Int!, lastId: Int, userId: Int): CoffeeShopsOutput!
   }
 `;

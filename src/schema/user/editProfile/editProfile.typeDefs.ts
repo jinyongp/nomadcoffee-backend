@@ -10,6 +10,6 @@ export default gql`
       location: String
       avatarURL: Upload
       githubUsername: String
-    ): CommonOutput
+    ): CommonOutput!
   }
 `;
