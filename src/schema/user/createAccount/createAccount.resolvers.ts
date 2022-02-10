@@ -2,13 +2,12 @@ import { User } from '@prisma/client';
 import { Resolvers } from '@types';
 import bcrypt from 'bcrypt';
 
-type CreateAccountArgs = Pick<User, 'username' | 'email' | 'password'>;
+type CreateAccountArgs = Pick<User, 'name' | 'username' | 'email' | 'password'>;
 
 export default {
   Mutation: {
-    createAccount: async (_, { username, email, password }: CreateAccountArgs, { client }) => {
-      password = await bcrypt.hash(password, 10);
-      const data = { username, email, password };
+    createAccount: async (_, data: CreateAccountArgs, { client }) => {
+      data.password = await bcrypt.hash(data.password, 10);
       await client.user.create({ data });
       return { ok: true };
     },
